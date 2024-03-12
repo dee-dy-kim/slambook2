@@ -1,8 +1,14 @@
 cmake_minimum_required(VERSION 2.8)
 project(ch6)
 
-set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_BUILD_TYPE "Debug")
 set(CMAKE_CXX_FLAGS "-std=c++14 -O3")
+
+
+# Eigen
+include_directories("/usr/include/eigen3")
+add_executable(eigenMatrix eigenMatrix.cpp)
+
 
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
@@ -17,9 +23,6 @@ include_directories(${CERES_INCLUDE_DIRS})
 # g2o
 find_package(G2O REQUIRED)
 include_directories(${G2O_INCLUDE_DIRS})
-
-# Eigen
-include_directories("/usr/include/eigen3")
 
 add_executable(gaussNewton gaussNewton.cpp)
 target_link_libraries(gaussNewton ${OpenCV_LIBS})
